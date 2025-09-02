@@ -47,6 +47,8 @@ Please feel free to contact me on [Twitter](https://twitter.com/rashadphz) or [c
 - Answer questions with local models (llama3, mistral, gemma, phi3)
 - Answer questions with any custom LLMs through [LiteLLM](https://litellm.vercel.app/docs/providers)
 - Search with an agent that plans and executes the search for better results
+- Related questions generation (cloud models only)
+- Optimized Docker builds with pip cache for faster development
 
 ## 🏃🏿‍♂️ Getting Started Locally
 
@@ -102,6 +104,15 @@ The system will automatically:
 - Update environment variables
 - Create a Docker Compose override file
 - Ensure frontend connects to the correct backend port
+
+### Development Optimizations
+
+**Pip Cache Optimization**: The Docker setup includes pip and poetry cache volumes for faster builds:
+- First build downloads and caches all Python packages
+- Subsequent builds reuse cached packages, significantly reducing build time
+- Cache persists between container rebuilds
+
+**Related Questions**: The related questions feature is automatically disabled for local models (Ollama) to improve performance. It's only available when using cloud-based models.
 
 For custom setup instructions, see [custom-setup-instructions.md](/custom-setup-instructions.md)
 
