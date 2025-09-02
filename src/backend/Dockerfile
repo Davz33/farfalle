@@ -8,6 +8,10 @@ ENV PYTHONIOENCODING=utf-8
 ENV PYTHONPATH=/workspace/src/
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
+# Set pip cache directory for faster builds
+ENV PIP_CACHE_DIR=/root/.cache/pip
+ENV POETRY_CACHE_DIR=/root/.cache/poetry
+
 ENV VIRTUAL_ENV=/workspace/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
@@ -21,7 +25,8 @@ COPY README.md ./
 
 COPY src/backend/ src/backend/
 
-RUN pip install --no-cache-dir poetry && poetry install
+# Install poetry and dependencies with cache
+RUN pip install poetry && poetry install
 
 EXPOSE 8000
 
